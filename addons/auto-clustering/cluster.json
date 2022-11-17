@@ -1,0 +1,20 @@
+{
+  "convertable" : false,
+  "jps"         : "https://raw.githubusercontent.com/jelastic-jps/redis-cluster/main/addons/auto-clustering/auto-cluster.jps",
+  "installOn": "afterCreateNodes",
+  "defaultState": false,
+  "nodeGroupData": {
+    "skipNodeEmails": true,
+    "scalingMode": "STATELESS"
+  },
+  "description" : "<h3>High performance and highly available scalable Redis cluster with horizontal data sharding</h3>Each Primary node is complemented with Secondary one to ensure reads load distribution and autorecovery if the Primary goes down. <img width='217' height='168' src='https://raw.githubusercontent.com/jelastic-jps/redis-cluster/main/images/redis-cluster-single-region-topology.svg?sanitize=true'>",
+  "skipOnEnvInstall": true,
+  "validation": {
+    "scalingMode": "STATELESS",
+    "minCount": 6,
+    "countIncrement": 2
+  },
+  "settings": {
+      "autoscaling:": false
+  }  
+}
