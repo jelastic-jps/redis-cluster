@@ -4,7 +4,7 @@
   "installOn": "afterCreateNodes",
   "defaultState": false,
   "nodeGroupData": {
-    "skipNodeEmails": false,
+    "skipNodeEmails": true,
     "scalingMode": "STATELESS"
   },
   "description" : "<h3>Redis Cluster Topology</h3><br>Pre-configured scalable Redis Cluster based on master-replica model where data is automatically sharded across multiple Redis nodes. It also provides some degree of availability when some nodes fail or are unable to communicate. <br><img width='300' height='340' src='https://raw.githubusercontent.com/jelastic-jps/redis-cluster/main/images/redis-cluster-single-region-topology.svg?sanitize=true'>",
