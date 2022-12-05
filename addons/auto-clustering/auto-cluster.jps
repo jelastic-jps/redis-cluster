@@ -1,6 +1,6 @@
 type: update
 jpsVersion: 1.8.1
-name: Redis cluster logic
+name: Redis auto-scalable cluster
 decription: Redis cluster autoscaling logic
 
 onInstall:
@@ -215,6 +215,6 @@ actions:
       user: root
 
 success: |
-  **Admin Panel**: [${nodes.nosqldb.master.url}](${nodes.nosqldb.master.url})
-  **User**: admin
+  **Admin Panel**: [${nodes.nosqldb.master.url}](${nodes.nosqldb.master.url})    
+  **User**: admin    
   **Password**: ${globals.pswd}
