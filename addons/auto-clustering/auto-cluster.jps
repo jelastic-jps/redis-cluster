@@ -215,6 +215,8 @@ actions:
       user: root
 
 success: |
+  Below you will find your admin panel link, username and password.
+
   **Admin Panel**: [${nodes.nosqldb.master.url}](${nodes.nosqldb.master.url})    
   **User**: admin    
   **Password**: ${globals.pswd}
