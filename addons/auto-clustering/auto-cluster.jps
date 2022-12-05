@@ -214,8 +214,7 @@ actions:
         jem service restart;
       user: root
 
-  startPage: ${nodes.nosqldb.master.url}
-  success: |
-    **Admin Panel**: [${nodes.nosqldb.master.url}](${nodes.nosqldb.master.url})
-    **User**: admin
-    **Password**: ${globals.pswd}
+success: |
+  **Admin Panel**: [${nodes.nosqldb.master.url}](${nodes.nosqldb.master.url})
+  **User**: admin
+  **Password**: ${globals.pswd}
