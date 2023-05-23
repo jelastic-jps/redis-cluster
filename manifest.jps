@@ -26,18 +26,12 @@ nodes:
     nodeType: redis
     skipNodeEmails: true
     diskLimit: 50
+    password: ${globals.redisPswd}
     extip: ${settings.externalIpAddresses:false}
+    cluster: true
 
 onInstall:
   - if (${settings.autoscaling}): autoscaling
-  - cmd[nosqldb]: jem passwd set -p ${globals.redisPswd}
-    user: root
-  - install:
-      jps: "${baseUrl}/addons/auto-clustering/auto-cluster.jps?_r=${fn.random}"
-      envName: "${env.envName}"
-      nodeGroup: nosqldb
-      settings:
-        autoscaling: ${settings.autoscaling}
         
 actions:
   autoscaling:
