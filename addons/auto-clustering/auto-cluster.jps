@@ -77,9 +77,6 @@ actions:
         - cmd[nosqldb]: sed -i 's/${@i.address}/${response.out}/'  /var/lib/redis/nodes.conf 
           user: root
       - cmd[nosqldb]: jem service start;
-      - getRedisPasswd
-      - setGlobals:
-          pswd: ${response.out}
     - else:
       - cmd[nosqldb]: jem service stop
       - forEach(nodes.nosqldb):
@@ -92,7 +89,10 @@ actions:
           user: root
         - cmd[nosqldb]: sed -i 's/${response.out}/${@i.address}/'  /var/lib/redis/nodes.conf 
           user: root
-      - cmd[nosqldb]: jem service start;
+      - cmd[nosqldb]: jem service start
+    - getRedisPasswd
+    - setGlobals:
+        pswd: ${response.out}
 
   getRedisPasswd:
     - cmd[${nodes.nosqldb.master.id}]: cat /etc/redis.conf |grep ^requirepass|awk '{print $2}'
