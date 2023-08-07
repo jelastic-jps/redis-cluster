@@ -5,7 +5,7 @@
   "defaultState": false,
   "nodeGroupData": {
     "skipNodeEmails": true,
-    "isClusterSupport": false,
+    "isClusterSupport": true,
     "scalingMode": "STATELESS",
     "isResetServicePassword": "NODEGROUP"
   },
