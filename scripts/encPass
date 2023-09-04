@@ -1,0 +1,30 @@
+#!/bin/bash
+
+. /etc/profile
+
+PASS=${1}
+
+REDIS_CONFIG_PATH=$(realpath /etc/redis.conf)
+
+getEncPass(){
+    REDIS_PASS=$(cat ${REDIS_CONFIG_PATH} |grep ^requirepass|awk '{print $2}')
+    echo ${REDIS_PASS} | openssl enc -base64 -e -A -aes-256-cbc -salt -pass pass:${1}; 
+}
+
+setEncPass(){
+    REDIS_PASS=$(echo -e "${2}" | openssl enc -base64 -d -A -aes-256-cbc -salt -pass pass:${1});
+    [ -z "${REDIS_PASS}" ] && return 1;
+    jem passwd set -p ${REDIS_PASS} 2>&1 && echo OK;
+    sed -i '/^masterauth/d' ${REDIS_CONFIG_PATH};
+    echo "masterauth ${REDIS_PASS}" >> ${REDIS_CONFIG_PATH};
+    jem service restart
+}
+
+case ${1} in
+    getEncPass)
+        getEncPass ${2}
+        ;;
+    setEncPass)
+        setEncPass ${2} ${3}
+        ;;
+esac
