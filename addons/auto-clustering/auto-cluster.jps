@@ -12,7 +12,6 @@ onAfterRedeployContainer[nosqldb]:
   - getRedisConfigPath
 
 onAfterServiceScaleOut[nosqldb]:
-  - getRedisPasswd
   - addNewNodeToCluster
   - setClusterAnnounceIp: ${event.response.nodes.join(id,)}
 
