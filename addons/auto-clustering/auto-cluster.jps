@@ -9,6 +9,7 @@ onInstall:
   - clusterInit
 
 onAfterRedeployContainer[nosqldb]:
+  - getEncPassUtil
   - getRedisConfigPath
 
 onAfterServiceScaleOut[nosqldb]:
@@ -119,8 +120,7 @@ actions:
       - cmd[nosqldb]: jem service start;
         
   prepareClusterNode:
-    - cmd[${this}] : wget -O /usr/local/sbin/encPass ${baseUrl}/scripts/encPass && chmod +x /usr/local/sbin/encPass;
-      user: root
+    - getEncPassUtil
     - setMasterAuth: ${this}
     - cmd[${this}]:
         sed -i 's/^loglevel notice/loglevel warning/' ${globals.redisConfigPath};
@@ -240,6 +240,10 @@ actions:
     - cmd[${nodes.nosqldb.master.id}]: realpath /etc/redis.conf
     - setGlobals:
         redisConfigPath: ${response.out}
+
+  getEncPassUtil:
+    - cmd[nosqldb] : wget -O /usr/local/sbin/encPass ${baseUrl}/scripts/encPass && chmod +x /usr/local/sbin/encPass;
+      user: root
 
 success:
   email: false
