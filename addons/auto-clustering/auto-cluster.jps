@@ -66,7 +66,7 @@ actions:
       user: root
     - setMasterAuth: nosqldb
     - script: |-
-        var resp = api.env.control.ExecCmdByGroup('${env.name}', session, 'nosqldb', toJSON([{ "command": "cat ${globals.redisConfigPath} |grep '^requirepass'|awk '{print $2}'", "params":""}]), false);
+        var resp = api.env.control.ExecCmdByGroup('${env.name}', session, 'nosqldb', toJSON([{ "command": "cat ${globals.redisConfigPath} |grep '^requirepass'|awk '{print $2}'", "params":""}]), true);
         if (resp.result != 0) return resp;
         var passwd = resp.responses[0].out;
         var title = "Redis cluster password was successfully reset for ${env.name}"
