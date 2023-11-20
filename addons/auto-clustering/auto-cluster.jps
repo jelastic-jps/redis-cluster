@@ -26,7 +26,11 @@ onBeforeScaleIn[nosqldb]:
   - rebalanceCluster
 
 onBeforeMigrate:
-  - if (${env.status} == 1): 
+  - if (${env.status} != 1): 
+      stopEvent:
+        type: warning
+        message: Migration of non-running Redis cluster is not supported.
+  - else:
     - saveCurrentIpAddress
 
 onBeforeClone:
