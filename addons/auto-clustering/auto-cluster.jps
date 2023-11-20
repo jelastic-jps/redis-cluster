@@ -24,12 +24,14 @@ onBeforeScaleIn[nosqldb]:
     - reshardAndRemoveBeforeScaleIn:
         address: ${response.out}
   - rebalanceCluster
-  
+
 onBeforeMigrate:
-  - saveCurrentIpAddress
+  - if (${env.status} == 1): 
+    - saveCurrentIpAddress
 
 onBeforeClone:
-  - saveCurrentIpAddress
+  - if (${env.status} == 1): 
+    - saveCurrentIpAddress
 
 onAfterMigrate:
   - setClusterAnnounceIp: ${nodes.nosqldb.join(id,)}
@@ -37,12 +39,17 @@ onAfterMigrate:
 
 onAfterAttachExtIp[nosqldb]:
   - setClusterAnnounceIp: ${nodes.nosqldb.join(id,)}
+  - saveCurrentIpAddress
 
 onBeforeDetachExtIp[nosqldb]:
   - setClusterAnnounceIp: ${nodes.nosqldb.join(id,)}
 
+onAfterDetachExtIp[nosqldb]:
+  - saveCurrentIpAddress
+
 onAfterSetExtIpCount[nosqldb]:
   - setClusterAnnounceIp: ${nodes.nosqldb.join(id,)}
+  - saveCurrentIpAddress
 
 onBeforeResetServicePassword[nosqldb]:
   - resetRedisPasswd
@@ -118,6 +125,7 @@ actions:
         - cmd[nosqldb]: sed -i 's/${response.out}/${@i.address}/'  /var/lib/redis/nodes.conf 
           user: root
       - cmd[nosqldb]: jem service start;
+    - saveCurrentIpAddress
         
   prepareClusterNode:
     - getEncPassUtil
