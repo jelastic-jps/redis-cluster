@@ -4,6 +4,9 @@ name: Redis auto-scalable cluster
 decription: Redis cluster autoscaling logic
 baseUrl: https://raw.githubusercontent.com/sych74/redis-cluster/main/
 
+nodeGroupAlias:
+  ${targetNodes.nodeGroup}: nosqldb
+
 onInstall:
   - getRedisConfigPath	
   - clusterInit
