@@ -8,8 +8,9 @@ nodeGroupAlias:
   ${settings.nodeGroup}: nosqldb
 
 onInstall:
-  - getRedisConfigPath	
-  - clusterInit
+  - cmd[nosqldb]: echo '00000000000000000'
+  - script: |-
+      return api.env.control.ExecCmdByGroup('${env.name}', session, 'nosqldb', toJSON([{ "command": "echo '1111111111111111'", "params":""}]), false);
 
 onAfterRedeployContainer[nosqldb]:
   - getEncPassUtil
