@@ -81,12 +81,13 @@ actions:
       user: root
     - setMasterAuth: nosqldb
     - script: |-
-        var resp = api.env.control.ExecCmdByGroup('${env.name}', session, 'nosqldb', toJSON([{ "command": "cat ${globals.redisConfigPath} |grep '^requirepass'|awk '{print $2}'", "params":""}]), true);
+        var resp = api.env.control.ExecCmdByGroup('${env.name}', session, nodeGroup, toJSON([{ "command": "cat ${globals.redisConfigPath} |grep '^requirepass'|awk '{print $2}'", "params":""}]), true);
         if (resp.result != 0) return resp;
         var passwd = resp.responses[0].out;
         var title = "Redis cluster password was successfully reset for ${env.name}"
             text = "<p>Redis cluster password was successfully reset for your ${env.name} environment.</p><p><strong>Admin panel</strong>:&nbsp;${nodes.nosqldb.master.adminUrl}</p><p><strong>User </strong>admin</p><p><strong>Password</strong>:&nbsp;" + passwd + "</p>"
         return api.message.email.Send(appid, signature, null, '${user.email}', '${user.email}', title, text);
+      nodeGroup: nosqldb
     - stopEvent:
         type: success
         message: Redis cluster password changed successfully. 
