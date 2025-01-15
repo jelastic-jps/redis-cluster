@@ -12,7 +12,7 @@
   "skipOnEnvInstall": true,
   "validation": {
     "scalingMode": "STATELESS",
-    "minCount": 2,
+    "minCount": 6,
     "countIncrement": 2
   },
   "settings": {
