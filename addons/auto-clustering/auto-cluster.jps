@@ -86,7 +86,7 @@ actions:
         var title = "Redis cluster password was successfully reset for ${env.name}"
             text = "<p>Redis cluster password was successfully reset for your ${env.name} environment.</p><p><strong>Admin panel</strong>:&nbsp;${nodes.nosqldb.master.adminUrl}</p><p><strong>User </strong>admin</p><p><strong>Password</strong>:&nbsp;" + passwd + "</p>"
         return api.message.email.Send(appid, signature, null, '${user.email}', '${user.email}', title, text);
-      nodeGroup: nosqltest
+      nodeGroup: nosqldb
     - stopEvent:
         type: success
         message: Redis cluster password changed successfully. 
@@ -114,12 +114,13 @@ actions:
       - cmd[nosqldb]: jem service start;
       - cmd[${nodes.nosqldb.master.id}]: cat ${globals.redisConfigPath} |grep '^requirepass'|awk '{print $2}'
       - script: |-
-          var resp = api.env.control.ExecCmdByGroup('${env.name}', session, 'nosqldb', toJSON([{ "command": "cat ${globals.redisConfigPath} |grep '^requirepass'|awk '{print $2}'", "params":""}]), false);
+          var resp = api.env.control.ExecCmdByGroup('${env.name}', session, nodeGroup, toJSON([{ "command": "cat ${globals.redisConfigPath} |grep '^requirepass'|awk '{print $2}'", "params":""}]), false);
           if (resp.result != 0) return resp;
           var passwd = resp.responses[0].out;
           var title = "Redis auto-scalable cluster ${env.name} is Up and Running";
           text = '<p>Your Redis auto-scalable cluster ${env.name} has been successfully deployed.<br><strong>Admin Panel </strong><a href="${nodes.nosqldb.master.url}">${nodes.nosqldb.master.url}</a><br> <strong>User </strong>admin<br> <strong>Password</strong> ' + passwd + ' </p>';
           return api.message.email.Send(appid, signature, null, '${user.email}', '${user.email}', title, text);
+        nodeGroup: nosqldb
     - else:
       - cmd[nosqldb]: jem service stop
       - forEach(nodes.nosqldb):
