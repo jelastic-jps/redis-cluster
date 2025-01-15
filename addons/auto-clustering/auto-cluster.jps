@@ -86,7 +86,7 @@ actions:
         var title = "Redis cluster password was successfully reset for ${env.name}"
             text = "<p>Redis cluster password was successfully reset for your ${env.name} environment.</p><p><strong>Admin panel</strong>:&nbsp;${nodes.nosqldb.master.adminUrl}</p><p><strong>User </strong>admin</p><p><strong>Password</strong>:&nbsp;" + passwd + "</p>"
         return api.message.email.Send(appid, signature, null, '${user.email}', '${user.email}', title, text);
-      nodeGroup: nosqldb
+      nodeGroup: nosqltest
     - stopEvent:
         type: success
         message: Redis cluster password changed successfully. 
