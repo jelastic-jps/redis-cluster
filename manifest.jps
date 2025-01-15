@@ -7,7 +7,7 @@ targetEditions: any
 logo: https://github.com/jelastic-jps/redis-cluster/blob/main/images/redis-cluster.png?raw=true
 description: |
   High performance and highly available scalable Redis cluster with horizontal data sharding. Each Primary node is complemented with Secondary one to ensure reads load distribution and autorecovery if the Primary goes down.
-baseUrl: https://raw.githubusercontent.com/sych74/redis-cluster/main
+baseUrl: https://raw.githubusercontent.com/jelastic-jps/redis-cluster/main
 
 categories:
   - apps/clusters
