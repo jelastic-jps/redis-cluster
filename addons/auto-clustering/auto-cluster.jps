@@ -10,7 +10,8 @@ nodeGroupAlias:
 onInstall:
   - cmd[nosqldb]: echo '00000000000000000'
   - script: |-
-      return api.env.control.ExecCmdByGroup('${env.name}', session, 'nosqldb', toJSON([{ "command": "echo '1111111111111111'", "params":""}]), false);
+      return api.env.control.ExecCmdByGroup('${env.name}', session, nodeGroup, toJSON([{ "command": "echo '1111111111111111'", "params":""}]), false);
+    nodeGroup: nosqldb
 
 onAfterRedeployContainer[nosqldb]:
   - getEncPassUtil
