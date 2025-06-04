@@ -1,6 +1,6 @@
 {
   "convertable" : false,
-  "jps"         : "https://raw.githubusercontent.com/jelastic-jps/redis-cluster/main/addons/auto-clustering/auto-cluster.jps",
+  "jps"         : "https://cdn.jsdelivr.net/gh/jelastic-jps/redis-cluster@main/addons/auto-clustering/auto-cluster.jps",
   "installOn": "afterCreateNodes",
   "defaultState": false,
   "nodeGroupData": {
@@ -8,7 +8,7 @@
     "scalingMode": "STATELESS",
     "isResetServicePassword": "NODEGROUP"
   },
-  "description" : "<h3>Redis Cluster Topology</h3><br>Pre-configured scalable Redis Cluster based on master-replica model where data is automatically sharded across multiple Redis nodes. It also provides some degree of availability when some nodes fail or are unable to communicate. <br><img width='265' height='300' src='https://raw.githubusercontent.com/jelastic-jps/redis-cluster/main/images/redis-cluster-single-region-topology.svg?sanitize=true'>",
+  "description" : "<h3>Redis Cluster Topology</h3><br>Pre-configured scalable Redis Cluster based on master-replica model where data is automatically sharded across multiple Redis nodes. It also provides some degree of availability when some nodes fail or are unable to communicate. <br><img width='265' height='300' src='https://cdn.jsdelivr.net/gh/jelastic-jps/redis-cluster@main/images/redis-cluster-single-region-topology.svg?sanitize=true'>",
   "skipOnEnvInstall": true,
   "validation": {
     "scalingMode": "STATELESS",

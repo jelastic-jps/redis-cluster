@@ -2,7 +2,7 @@ type: update
 jpsVersion: 1.8.1
 name: Redis auto-scalable cluster
 decription: Redis cluster autoscaling logic
-baseUrl: https://raw.githubusercontent.com/jelastic-jps/redis-cluster/main/
+baseUrl: https://cdn.jsdelivr.net/gh/sych74/redis-cluster@JE-74471
 
 permanent: true
 
