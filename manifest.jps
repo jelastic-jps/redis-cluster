@@ -7,7 +7,7 @@ targetEditions: any
 logo: /images/redis-cluster.png?raw=true
 description: |
   High performance and highly available scalable Redis cluster with horizontal data sharding. Each Primary node is complemented with Secondary one to ensure reads load distribution and autorecovery if the Primary goes down.
-baseUrl: https://cdn.jsdelivr.net/gh/sych74/redis-cluster@JE-74471
+baseUrl: https://cdn.jsdelivr.net/gh/jelastic-jps/redis-cluster@main
 
 categories:
   - apps/clusters
