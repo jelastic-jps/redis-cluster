@@ -18,7 +18,7 @@ Cluster can be scaled out/in either automatically or manually. Each scaling oper
 
 Get your Virtuozzo account at any of available [hosting provider](https://www.virtuozzo.com/application-platform-partners/).
 
-Import the  [package manifest raw link](https://github.com/jelastic-jps/redis-cluster/blob/main/manifest.jps) or find Redis Cluster application in the [Marketplace](https://www.virtuozzo.com/application-platform-docs/marketplace/) within the [dashboard](https://www.virtuozzo.com/application-platform-docs/dashboard-guide).  
+Import the  [package manifest raw link](https://cdn.jsdelivr.net/gh/jelastic-jps/redis-cluster@main/manifest.jps) or find Redis Cluster application in the [Marketplace](https://www.virtuozzo.com/application-platform-docs/marketplace/) within the [dashboard](https://www.virtuozzo.com/application-platform-docs/dashboard-guide).  
 
 ## Installation Process
 
@@ -42,7 +42,7 @@ and click on __Install__.
 <img src="images/install.png" width="600">
 </p>
 
-Once the deployment is finished, you’ll see an appropriate success pop-up.
+Once the deployment is finished, you'll see an appropriate success pop-up.
 
 <p align="left"> 
 <img src="images/success.png" width="350">
